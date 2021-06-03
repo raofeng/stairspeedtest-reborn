@@ -283,7 +283,17 @@ void ssrspeed_webserver_routine(const std::string &listen_address, int listen_po
 
     append_response("GET", "/", "REDIRECT", [](RESPONSE_CALLBACK_ARGS) -> std::string
     {
-        return "http://web1.ospf.in/";
+        return "https://ddz.cx/speedtest";
+    });
+
+    append_response("GET", "/index", "text/html;charset=utf-8", [](RESPONSE_CALLBACK_ARGS) -> std::string
+    {
+        return fileGet("tools/gui/index.html", true);
+    });
+
+    append_response("GET", "/speedtest", "text/html;charset=utf-8", [](RESPONSE_CALLBACK_ARGS) -> std::string
+    {
+        return fileGet("tools/gui/speedtest.html", true);
     });
 
     append_response("GET", "/favicon.ico", "x-icon", [](RESPONSE_CALLBACK_ARGS) -> std::string
